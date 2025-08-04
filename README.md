@@ -95,3 +95,4 @@ The bot includes comprehensive error handling for:
 ## License
 
 MIT License - Feel free to modify and distribute!
+# Bot restart

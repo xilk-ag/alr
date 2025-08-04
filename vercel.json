@@ -1,14 +1,25 @@
 {
   "version": 2,
   "functions": {
-    "index.js": {
+    "api/webhook.js": {
       "maxDuration": 30
+    },
+    "api/keep-alive.js": {
+      "maxDuration": 10
     }
   },
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/index.js"
+      "src": "/",
+      "dest": "/api/keep-alive.js"
+    },
+    {
+      "src": "/webhook",
+      "dest": "/api/webhook.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     }
   ]
 } 

@@ -14,7 +14,7 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/api/ping.js"
+      "dest": "/api/keep-alive.js"
     },
     {
       "src": "/ping",

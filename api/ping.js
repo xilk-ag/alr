@@ -104,12 +104,30 @@ client.on(Events.MessageCreate, async (message) => {
 client.login(process.env.DISCORD_TOKEN);
 
 module.exports = async (req, res) => {
-  // This endpoint gets pinged every few minutes to keep the bot alive
-  res.status(200).json({ 
-    status: 'Bot is alive and roasting! 🔥',
-    timestamp: new Date().toISOString(),
-    botStatus: client.isReady() ? 'Connected to Discord' : 'Connecting...',
-    uptime: process.uptime(),
-    message: 'Discord Roast Bot is running 24/7 on Vercel!'
-  });
+  try {
+    // This endpoint gets pinged every few minutes to keep the bot alive
+    const botStatus = client.isReady() ? 'Connected to Discord' : 'Connecting...';
+    const guildCount = client.guilds?.cache?.size || 0;
+    
+    res.status(200).json({ 
+      status: 'Bot is alive and roasting! 🔥',
+      timestamp: new Date().toISOString(),
+      botStatus: botStatus,
+      guildCount: guildCount,
+      uptime: process.uptime(),
+      message: 'Discord Roast Bot is running 24/7 on Vercel!',
+      environment: {
+        hasToken: !!process.env.DISCORD_TOKEN,
+        hasClientId: !!process.env.DISCORD_CLIENT_ID,
+        hasApiKey: !!process.env.OPENROUTER_API_KEY
+      }
+    });
+  } catch (error) {
+    console.error('Ping endpoint error:', error);
+    res.status(500).json({
+      status: 'Error in ping endpoint',
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
 }; 

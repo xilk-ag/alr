@@ -21,6 +21,10 @@
       "dest": "/api/ping.js"
     },
     {
+      "src": "/test",
+      "dest": "/api/test.js"
+    },
+    {
       "src": "/webhook",
       "dest": "/api/webhook.js"
     },

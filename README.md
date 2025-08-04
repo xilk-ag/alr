@@ -94,4 +94,4 @@ The bot includes comprehensive error handling for:
 
 ## License
 
-MIT License - Feel free to modify and distribute! 
+MIT License - Feel free to modify and distribute!

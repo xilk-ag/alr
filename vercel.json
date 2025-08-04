@@ -1,6 +1,9 @@
 {
   "version": 2,
   "functions": {
+    "api/ping.js": {
+      "maxDuration": 30
+    },
     "api/webhook.js": {
       "maxDuration": 30
     },
@@ -11,7 +14,11 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/api/keep-alive.js"
+      "dest": "/api/ping.js"
+    },
+    {
+      "src": "/ping",
+      "dest": "/api/ping.js"
     },
     {
       "src": "/webhook",
@@ -20,6 +27,12 @@
     {
       "src": "/api/(.*)",
       "dest": "/api/$1"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/ping",
+      "schedule": "*/5 * * * *"
     }
   ]
 } 
